@@ -187,7 +187,7 @@
     <!-- Splash screen -->
     <div id="splash-screen">
         <video id="splash-video" autoplay muted playsinline>
-            <source src="dino-rush-splash.mp4" type="video/mp4" />
+            <source id="splash-source" src="dino-rush-splash.mp4" type="video/mp4" />
             Tu navegador no soporta el video.
         </video>
     </div>
@@ -218,15 +218,15 @@
 
     <script>
         const buildUrl = "Build";
-        const loaderUrl = buildUrl + "/v0.5.0.loader.js";
+        const loaderUrl = buildUrl + "/v0.5.2.loader.js";
         const config = {
-            dataUrl: buildUrl + "/v0.5.0.data.unityweb",
-            frameworkUrl: buildUrl + "/v0.5.0.framework.js.unityweb",
-            codeUrl: buildUrl + "/v0.5.0.wasm.unityweb",
+            dataUrl: buildUrl + "/v0.5.2.data.unityweb",
+            frameworkUrl: buildUrl + "/v0.5.2.framework.js.unityweb",
+            codeUrl: buildUrl + "/v0.5.2.wasm.unityweb",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "ZimpleGames",
             productName: "dino-rush",
-            productVersion: "0.5.0",
+            productVersion: "0.5.2",
         };
 
         const canvas = document.querySelector("#unity-canvas");
@@ -236,6 +236,14 @@
         // Splash screen logic
         const splashVideo = document.getElementById("splash-video");
         const splashScreen = document.getElementById("splash-screen");
+
+        // ── Selección de video por tamaño de pantalla ──
+        const isSmallScreen = window.innerWidth <= 768;
+        const splashSource = document.getElementById("splash-source");
+        splashSource.src = isSmallScreen
+            ? "dino-rush-splash-mobile.mp4"
+            : "dino-rush-splash.mp4";
+        splashVideo.load();
 
         // Loading Screen
         const loadingVideoContainer = document.getElementById("loading-video-container");
