@@ -228,6 +228,9 @@
             productName: "dino-rush",
             productVersion: "1.1.5",
         };
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+            config.devicePixelRatio = 1;
+        }
 
         const canvas = document.querySelector("#unity-canvas");
         const loadingBar = document.querySelector("#loading-bar-wrapper");
